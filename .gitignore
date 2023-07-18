@@ -1,0 +1,6 @@
+venv/
+
+# pycache ignored
+__pycache__/
+*.py[cod]
+*$py.class

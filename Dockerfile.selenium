@@ -1,0 +1,18 @@
+FROM selenium/standalone-chrome
+
+
+# 루트로 권한을 얻어야함
+USER root
+
+# 한글을 위한 관련 패키지
+RUN apt-get update && \
+    apt-get install -y \        
+        locales \
+        fonts-ipafont-gothic fonts-ipafont-mincho \
+        ttf-wqy-microhei fonts-wqy-microhei       \
+        fonts-tlwg-loma fonts-tlwg-loma-otf       \
+    && apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* && locale-gen ko_KR.UTF-8
+
+ENV LANG ko_KR.UTF-8
+ENV LANGUAGE ko_KR:en
+ENV LC_ALL ko_KR

@@ -1,0 +1,35 @@
+version: "3.7"
+
+services:
+  python:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: "sleep infinity "
+    volumes:
+      - .:/workdir
+    depends_on:
+      - chrome1
+      - chrome2    
+
+  chrome1:
+    hostname: chrome1
+    build:
+      context: .
+      dockerfile: Dockerfile.selenium
+    shm_size: 1gb       
+    ports:
+      - 4444:4444   
+    # 시스템 자원 사용을 위한 Privileged 설정
+    privileged: true     
+
+  chrome2:    
+    hostname: chrome2    
+    build:
+      context: .
+      dockerfile: Dockerfile.selenium
+    shm_size: 1gb            
+    ports:
+      - 4445:4444   
+    # 시스템 자원 사용을 위한 Privileged 설정
+    privileged: true 
